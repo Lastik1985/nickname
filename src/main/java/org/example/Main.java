@@ -20,22 +20,22 @@ public class Main {
         Thread[] threads = new Thread[3];
         threads[0] = new Thread(() -> {
             for (String text : texts) {
-                if (Palindrome(text) && !coincidence(text)) {
-                    Counter(text.length());
+                if (isPalindrome(text) && !isCoincidence(text)) {
+                    isCalculate(text.length());
                 }
             }
         });
         threads[1] = new Thread(() -> {
             for (String text : texts) {
-                if (coincidence(text)) {
-                    Counter(text.length());
+                if (isCoincidence(text)) {
+                    isCalculate(text.length());
                 }
             }
         });
         threads[2] = new Thread(() -> {
             for (String text : texts) {
-                if (!Palindrome(text) && increasing(text)) {
-                    Counter(text.length());
+                if (!isPalindrome(text) && isIncreasing(text)) {
+                    isCalculate(text.length());
                 }
             }
         });
@@ -54,11 +54,11 @@ public class Main {
         System.out.println("Потребовалось " + (finish-start) + " сек.");
     }
 
-    public static boolean Palindrome(String text) {
+    public static boolean isPalindrome(String text) {
         return text.equals(new StringBuilder(text).reverse().toString());
     }
 
-    public static boolean coincidence(String text) {
+    public static boolean isCoincidence(String text) {
         for (int i = 1; i < text.length(); i++) {
             if (text.charAt(i) != text.charAt(i - 1))
                 return false;
@@ -66,7 +66,7 @@ public class Main {
         return true;
     }
 
-    public static boolean increasing(String text) {
+    public static boolean isIncreasing(String text) {
         for (int i = 1; i < text.length(); i++) {
             if (text.charAt(i) < text.charAt(i - 1))
                 return false;
@@ -74,7 +74,7 @@ public class Main {
         return true;
     }
 
-    public static void Counter(int textLength) {
+    public static void isCalculate(int textLength) {
         if (textLength == 3) {
             counter3.getAndIncrement();
         } else if (textLength == 4) {
